@@ -1,4 +1,4 @@
-import React, { Children, FunctionComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 
 import './modal.scss';
 

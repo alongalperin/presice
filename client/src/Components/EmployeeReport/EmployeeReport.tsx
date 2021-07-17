@@ -2,7 +2,7 @@ import React, { FunctionComponent, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-import SubordinatesList from '../../SubordinatesList';
+import SubordinatesList from './SubordinatesList';
 import PersonalDetails from './PersonalDetails';
 import TasksList from './TasksList';
 import ReportsList from './ReportsList';
@@ -77,7 +77,7 @@ const EmployeeReport: FunctionComponent<{}> = () => {
       setReports(reports);
     };
     fetchEmployee();
-  }, []);
+  }, [params.id]);
 
   return (
     <div>

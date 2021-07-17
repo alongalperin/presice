@@ -1,10 +1,10 @@
 import React, { FunctionComponent, useState } from 'react';
 
-import ReportTaskModal from '../ReportTaskModal';
+import ReportTaskModal from './ReportTaskModal';
 
 import { EmployeeType } from '../../types/employee';
 
-import './PersonalDetails.scss';
+import './EmployeeReport.scss';
 
 type Props = {
   employee: EmployeeType | undefined;
@@ -44,7 +44,7 @@ const PersonalDetails: FunctionComponent<Props> = ({
 
   return (
     <div className="PersonalDetails__Container">
-      <img src={employee?.photo || profile_default_photo} alt="emplyee image" />
+      <img src={employee?.photo || profile_default_photo} alt="emplyee" />
       <div className="PersonalDetails__Content">
         <div className="PersonalDetails__Row">
           <span className="PersonalDetails__FieldName">Name:</span>
