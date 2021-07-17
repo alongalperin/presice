@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 
-import { ReportType } from '../../types/report';
+import { ReportType } from '../../Types/report';
 
 type Props = {
   reports: ReportType[];

@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import EmployeesList from './Components/EmployeeList/EmployeesList';
 
-import { EmployeeType } from './types/employee';
+import { EmployeeType } from './Types/employee';
 
 type Props = {
   employees: EmployeeType[];

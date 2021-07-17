@@ -6,6 +6,5 @@ export const parseDateForDB = (date: Date) => {
   })
   const [day, month, year] = localeDate.split('/');
 
-  console.log(`${day}-${month}-${year}`)
   return `${year}-${month}-${day}`;
 }

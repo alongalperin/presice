@@ -2,7 +2,7 @@ import React, { FunctionComponent, useState } from 'react';
 
 import ReportTaskModal from './ReportTaskModal';
 
-import { EmployeeType } from '../../types/employee';
+import { EmployeeType } from '../../Types/employee';
 
 import './EmployeeReport.scss';
 

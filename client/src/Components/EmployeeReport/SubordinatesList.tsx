@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState } from 'react';
 
-import { EmployeeType } from '../../types/employee';
+import { EmployeeType } from '../../Types/employee';
 
 import AssignTaskModal from './AssignTaskModal';
 import EmployeeListItem from '../EmployeeList/EmployeeListItem';

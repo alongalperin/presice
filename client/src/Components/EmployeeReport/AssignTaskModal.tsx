@@ -1,9 +1,9 @@
 import React, { FunctionComponent, useState } from 'react';
-import axios from 'axios';
 
 import DatePicker from 'react-datepicker';
-
 import Modal from '../UI/Modal';
+
+import { POST_TASK } from '../../Utils/data/taskData';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import './EmployeeReport.scss';
@@ -25,11 +25,7 @@ const AssignTaskModal: FunctionComponent<Props> = ({
   const submitTask = () => {
     const postTask = async () => {
       const dueDate = startDate.toDateString();
-      await axios.post('http://localhost:5001/task', {
-        employeeId,
-        dueDate,
-        taskTitle,
-      });
+      await POST_TASK(employeeId, dueDate, taskTitle);
     };
     postTask();
     handleModalClose();

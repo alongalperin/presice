@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 
-import { EmployeeType } from '../../types/employee';
+import { EmployeeType } from '../../Types/employee';
 
 import './EmployeesList.scss';
 

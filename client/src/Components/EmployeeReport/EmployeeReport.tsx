@@ -1,45 +1,46 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 
 import SubordinatesList from './SubordinatesList';
 import PersonalDetails from './PersonalDetails';
 import TasksList from './TasksList';
 import ReportsList from './ReportsList';
 
-import { EmployeeType } from '../../types/employee';
-import { TaskType } from '../../types/task';
-import { ReportType } from '../../types/report';
+import { EmployeeType } from '../../Types/employee';
+import { TaskType } from '../../Types/task';
+import { ReportType } from '../../Types/report';
+import {
+  FETCH_EMPLOYEE_BY_ID,
+  FETCH_SUBORDINANTS_BY_MANAGER_ID,
+  FETCH_MANAGER_OF_EMPLOYEE,
+} from '../../Utils/data/employeeData';
+import { FETCH_TASKS_OF_EMPLOYEE } from '../../Utils/data/taskData';
+import { FETCH_REPORTS_OF_EMPLOYEE } from '../../Utils/data/reportData';
 
 import '../EmployeeList/EmployeesList.scss';
 
 const fetchUser = async (employeeId: string) => {
-  const url = `http://localhost:5000/employee/${employeeId}`;
-  const { data } = await axios.get<EmployeeType>(url);
+  const { data } = await FETCH_EMPLOYEE_BY_ID(employeeId);
   return data;
 };
 
 const fetchSubordinates = async (employeeId: string) => {
-  const url = `http://localhost:5000/employee/${employeeId}/subordinates`;
-  const { data } = await axios.get<EmployeeType[]>(url);
+  const { data } = await FETCH_SUBORDINANTS_BY_MANAGER_ID(employeeId);
   return data;
 };
 
 const fetchManager = async (employeeId: string) => {
-  const url = `http://localhost:5000/employee/${employeeId}/manager`;
-  const { data } = await axios.get<EmployeeType>(url);
+  const { data } = await FETCH_MANAGER_OF_EMPLOYEE(employeeId);
   return data;
 };
 
 const fetchTasks = async (employeeId: string) => {
-  const url = `http://localhost:5001/tasks/employee/${employeeId}`;
-  const { data } = await axios.get<TaskType[]>(url);
+  const { data } = await FETCH_TASKS_OF_EMPLOYEE(employeeId);
   return data;
 };
 
 const fetchReports = async (employeeId: string) => {
-  const url = `http://localhost:5002/reports/manager/${employeeId}`;
-  const { data } = await axios.get<ReportType[]>(url);
+  const { data } = await FETCH_REPORTS_OF_EMPLOYEE(employeeId);
   return data;
 };
 

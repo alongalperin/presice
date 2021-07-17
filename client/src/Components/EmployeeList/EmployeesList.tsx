@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { EmployeeType } from '../../types/employee';
+import { EmployeeType } from '../../Types/employee';
 
 import EmployeeListItem from './EmployeeListItem';
 

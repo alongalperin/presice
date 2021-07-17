@@ -1,9 +1,8 @@
 import React, { FunctionComponent, useState } from 'react';
-import axios from 'axios';
 
 import Modal from '../UI/Modal';
 
-// import './EmployeeReport.scss';
+import { POST_REPORT } from '../../Utils/data/reportData';
 
 type Props = {
   handleModalClose: () => void;
@@ -18,17 +17,11 @@ const ReportTaskModal: FunctionComponent<Props> = ({
   employeeId,
   managerId,
 }: Props) => {
-  console.log('render');
-
   const [reportText, setReportText] = useState<string>('');
 
   const submitReport = () => {
     const postReport = async () => {
-      await axios.post('http://localhost:5002/report', {
-        senderId: employeeId,
-        reciverId: managerId,
-        text: reportText,
-      });
+      await POST_REPORT(employeeId, managerId, reportText);
     };
     postReport();
     handleModalClose();
