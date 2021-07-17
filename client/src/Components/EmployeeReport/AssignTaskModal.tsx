@@ -32,9 +32,8 @@ const AssignTaskModal: FunctionComponent<Props> = ({
     reset();
   };
 
-  const handleTitleChange = (e: any) => {
-    // TODO: add type to e
-    setTaskTitle(e.target.value);
+  const handleTitleChange = (e: React.FormEvent<HTMLInputElement>) => {
+    setTaskTitle(e.currentTarget.value);
   };
 
   const reset = () => {

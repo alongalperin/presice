@@ -28,9 +28,8 @@ const ReportTaskModal: FunctionComponent<Props> = ({
     reset();
   };
 
-  const handleReportChange = (e: any) => {
-    // TODO: add type to e
-    setReportText(e.target.value);
+  const handleReportChange = (e: React.FormEvent<HTMLInputElement>) => {
+    setReportText(e.currentTarget.value);
   };
 
   const reset = () => {

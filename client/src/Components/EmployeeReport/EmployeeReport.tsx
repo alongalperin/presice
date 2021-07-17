@@ -53,29 +53,52 @@ const EmployeeReport: FunctionComponent<{}> = () => {
   const [reports, setReports] = useState<ReportType[]>([]);
 
   useEffect(() => {
-    // TODO: add try catch
     const fetchEmployee = async () => {
       const employeeId = params.id;
 
-      const user = await fetchUser(employeeId);
-      setEmployee(user);
+      try {
+        const user = await fetchUser(employeeId);
+        setEmployee(user);
+      } catch (e) {
+        console.log('[error]', e);
+        setEmployee(undefined);
+      }
 
-      const subordinates = await fetchSubordinates(employeeId);
-      setSubordinates(subordinates);
+      try {
+        const subordinates = await fetchSubordinates(employeeId);
+        setSubordinates(subordinates);
+      } catch (e) {
+        console.log('[error]', e);
+        setSubordinates([]);
+      }
 
-      const manager = await fetchManager(employeeId);
-      setManager(manager);
+      try {
+        const manager = await fetchManager(employeeId);
+        setManager(manager);
+      } catch (e) {
+        console.log('[error]', e);
+        setManager(undefined);
+      }
 
-      const tasks = await fetchTasks(employeeId);
-      tasks.forEach((task) => (task.due_date = new Date(task.due_date)));
-      setTasks(tasks);
+      try {
+        const tasks = await fetchTasks(employeeId);
+        tasks.forEach((task) => (task.due_date = new Date(task.due_date)));
+        setTasks(tasks);
+      } catch (e) {
+        console.log('[error]', e);
+        setTasks([]);
+      }
 
-      const reports = await fetchReports(employeeId);
-      reports.forEach(
-        (report) => (report.reporting_date = new Date(report.reporting_date))
-      );
-      console.log('reports', reports);
-      setReports(reports);
+      try {
+        const reports = await fetchReports(employeeId);
+        reports.forEach(
+          (report) => (report.reporting_date = new Date(report.reporting_date))
+        );
+        setReports(reports);
+      } catch (e) {
+        console.log('[error]', e);
+        setReports([]);
+      }
     };
     fetchEmployee();
   }, [params.id]);

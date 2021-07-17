@@ -67,9 +67,11 @@ const PersonalDetails: FunctionComponent<Props> = ({
             {manager?.first_name || ''} {manager?.last_name || ''}
           </span>
           <div className="PersonalDetails__Button">
-            <button onClick={handleOnReportClick} className="Button">
-              Report
-            </button>
+            {manager ? (
+              <button onClick={handleOnReportClick} className="Button">
+                Report
+              </button>
+            ) : null}
           </div>
         </div>
       </div>

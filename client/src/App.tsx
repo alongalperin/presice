@@ -12,10 +12,14 @@ import './Style/main.scss';
 function App() {
   const [employees, setEmployees] = useState<EmployeeType[]>([]);
   useEffect(() => {
-    // TODO: add try catch
     const fetchEmployees = async () => {
-      const { data } = await FETCH_EMPLOYEES();
-      setEmployees(data);
+      try {
+        const { data } = await FETCH_EMPLOYEES();
+        setEmployees(data);
+      } catch (e) {
+        console.log('[error]:', e);
+        setEmployees([]);
+      }
     };
     fetchEmployees();
   }, []);
