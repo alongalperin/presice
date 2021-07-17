@@ -2,7 +2,6 @@ if (process.env.NODE_ENV !== 'production') { require('dotenv').config(); }
 import express, { Request, Response } from 'express';
 import cors from "cors";
 const pool = require("./utils/dbUtil");
-const parseDateForDB = require("./utils/dateUtils");
 
 const app = express();
 app.use(express.json())

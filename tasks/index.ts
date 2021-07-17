@@ -2,7 +2,7 @@ if (process.env.NODE_ENV !== 'production') { require('dotenv').config(); }
 import express, { Request, Response } from 'express';
 import cors from "cors";
 const pool = require("./utils/dbUtil");
-const parseDateForDB = require("./utils/dateUtils");
+const { parseDateForDB } = require("./utils/dateUtils");
 
 const app = express();
 app.use(express.json())
@@ -20,6 +20,8 @@ app.post('/task', async (req: Request, res: Response) => {
   const newTask = req.body;
   const parsedDate = parseDateForDB(new Date(newTask.dueDate))
 
+  console.log('parsedDate', parsedDate)
+
   await pool.query(
     `
     INSERT INTO tasks
@@ -32,7 +34,7 @@ app.post('/task', async (req: Request, res: Response) => {
 
 app.get('/tasks/employee/:id', async (req: Request, res: Response) => {
   const employeeId = req.params.id;
-  console.log('[POST] request for tasks of user', employeeId);
+  console.log('[GET] request for tasks of user', employeeId);
 
   const tasks = await pool.query(
     `

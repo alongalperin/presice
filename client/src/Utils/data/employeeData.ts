@@ -4,23 +4,23 @@ import { EmployeeType } from "../../Types/employee";
 
 export const FETCH_EMPLOYEES = () => {
   return axios.get<EmployeeType[]>(
-    'http://localhost:5000/employees'
+    `${process.env.REACT_APP_EMPLOYEES_SERVICE_URL}/employees`
   );
 }
 
 export const FETCH_EMPLOYEE_BY_ID = (employeeId: string) => {
-  const url = `http://localhost:5000/employee/${employeeId}`;
+  const url = `${process.env.REACT_APP_EMPLOYEES_SERVICE_URL}/employee/${employeeId}`;
   return axios.get<EmployeeType>(url);
 }
 
 export const FETCH_SUBORDINANTS_BY_MANAGER_ID = (managerId: string) => {
-  const url = `http://localhost:5000/employee/${managerId}/subordinates`;
+  const url = `${process.env.REACT_APP_EMPLOYEES_SERVICE_URL}/employee/${managerId}/subordinates`;
   return axios.get<EmployeeType[]>(url);
 }
 
 
 export const FETCH_MANAGER_OF_EMPLOYEE = (employeeId: string) => {
-  const url = `http://localhost:5000/employee/${employeeId}/manager`;
+  const url = `${process.env.REACT_APP_EMPLOYEES_SERVICE_URL}/employee/${employeeId}/manager`;
   return axios.get<EmployeeType>(url);
 }
 

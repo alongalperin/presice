@@ -2,13 +2,13 @@ import axios from "axios";
 
 import { TaskType } from "../../Types/task";
 
-export const FETCH_TASKS_OF_EMPLOYEE = (employeeId: string) => {
-  const url = `http://localhost:5001/tasks/employee/${employeeId}`;
+export const FETCH_TASKS_OF_EMPLOYEE = async (employeeId: string) => {
+  const url = `${process.env.REACT_APP_TASKS_SERVICE_URL}/tasks/employee/${employeeId}`;
   return axios.get<TaskType[]>(url);
 }
 
-export const POST_TASK = (employeeId: number | null, dueDate: string, taskTitle: string) => {
-  return axios.post('http://localhost:5001/task', {
+export const POST_TASK = async (employeeId: number | null, dueDate: string, taskTitle: string) => {
+  return axios.post(`${process.env.REACT_APP_TASKS_SERVICE_URL}/task`, {
     employeeId,
     dueDate,
     taskTitle,

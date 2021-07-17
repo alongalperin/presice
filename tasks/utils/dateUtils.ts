@@ -4,8 +4,9 @@ export const parseDateForDB = (date: Date) => {
     month: "2-digit",
     day: "2-digit"
   })
-  const [day, month, year] = localeDate.split('/');
 
-  console.log(`${day}-${month}-${year}`)
+  console.log('localeDate', localeDate)
+  const [month, day, year] = localeDate.split('/');
+
   return `${year}-${month}-${day}`;
 }
