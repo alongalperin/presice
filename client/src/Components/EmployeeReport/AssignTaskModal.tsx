@@ -51,7 +51,8 @@ const AssignTaskModal: FunctionComponent<Props> = ({
     >
       <div className="AssignTaskModal__Form">
         <div className="Input__Group">
-          <label>Task Title:</label>
+          <label>Task Title</label>
+          <br />
           <input
             type="text"
             id="taskName"
@@ -61,7 +62,8 @@ const AssignTaskModal: FunctionComponent<Props> = ({
           />
         </div>
         <div className="Input__Group">
-          <label>Due:</label>
+          <label>Due Date</label>
+          <br />
           <DatePicker
             selected={startDate}
             onChange={(date: any) => setStartDate(date)}

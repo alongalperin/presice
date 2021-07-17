@@ -70,7 +70,7 @@ const SubordinatesList: FunctionComponent<EmployeesListProps> = ({
   return (
     <div className="SubordinatesList">
       <span className="SubordinatesList__Title">My subordinates</span>
-      {renderEmployeesItems(subordinates)}
+      <div className="Section__List">{renderEmployeesItems(subordinates)}</div>
       {isModalOpen && renderModalContent()}
     </div>
   );

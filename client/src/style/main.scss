@@ -58,10 +58,9 @@ hr {
 }
 
 .Input__Group {
-  display: flex;
-  align-content: space-between;
   width: inherit;
   margin: 0 auto 1vh;
+  text-align: left;
   input {
     height: $line-height;
     width: 20vw;

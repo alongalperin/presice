@@ -66,11 +66,10 @@
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
-  border: 1px solid $grey-1;
+  border: $section-border;
 }
 
 .TasksList__ListItem {
-  width: 100%;
   padding: 1vh 2vw;
 
   span {

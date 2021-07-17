@@ -1,5 +1,5 @@
 if (process.env.NODE_ENV !== 'production') { require('dotenv').config(); }
-import express, { Request, Response } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import cors from "cors";
 const pool = require("./utils/dbUtil");
 
@@ -10,59 +10,80 @@ app.use(cors());
 const PORT = 5000;
 
 // TODOS:
-// 1 add error handling
-// 2 create enum for fields names
+// 1 create enum for fields names
 
-app.get('/employees', async (req: Request, res: Response) => {
+app.get('/employees', async (req: Request, res: Response, next: NextFunction) => {
   console.log('[GET] request for employees');
 
-  const employees = await pool.query('SELECT id, first_name, last_name, position_title FROM employees');
+  let employees;
+  try {
+    employees = await pool.query('SELECT id, first_name, last_name, position_title FROM employees');
+  } catch (e) {
+    next(e);
+  }
 
   res.status(200).send(employees);
 });
 
-app.get('/employee/:id', async (req: Request, res: Response) => {
-  console.log(`[GET] request for employee details ${req.params.id}`);
-
+app.get('/employee/:id', async (req: Request, res: Response, next: NextFunction) => {
   const employeeId = req.params.id;
-  const employee = await pool.query(
-    `
-    SELECT id, first_name, last_name, position_title, photo
-    FROM employees
-    WHERE id=?
-    `, [employeeId]);
+  console.log('[GET] request for employee details', employeeId);
 
-  res.status(200).send(employee[0]);
+  let employee;
+  try {
+
+    employee = await pool.query(
+      `
+      SELECT id, first_name, last_name, position_title, photo
+      FROM employees
+      WHERE id=?
+      `, [employeeId]);
+  } catch (e) {
+    next(e);
+  }
+
+  res.status(200).send(employee[0] || []);
 });
 
-app.get('/employee/:id/manager', async (req: Request, res: Response) => { // TODO: create one query for all the data
-  console.log(`[GET] request for employee details ${req.params.id}`);
-
+app.get('/employee/:id/manager', async (req: Request, res: Response, next: NextFunction) => {
   const employeeId = req.params.id;
-  const manager = await pool.query(
-    `
-    SELECT id, first_name, last_name
-    FROM employees
-    WHERE id IN (
-	    SELECT reports_to
-	    FROM employees
-	    WHERE id=?
-    )
-    `, [employeeId]);
+  console.log('[GET] request for employee details', employeeId);
+
+  let manager;
+  try {
+
+    manager = await pool.query(
+      `
+      SELECT id, first_name, last_name
+      FROM employees
+      WHERE id IN (
+        SELECT reports_to
+        FROM employees
+        WHERE id=?
+        )
+        `, [employeeId]);
+  } catch (e) {
+    next(e);
+  }
 
   res.status(200).send(manager[0]);
 });
 
-app.get('/employee/:id/subordinates', async (req: Request, res: Response) => {
+app.get('/employee/:id/subordinates', async (req: Request, res: Response, next: NextFunction) => {
   const managerId = req.params.id;
   console.log('[GET] request for subordinates', managerId);
 
-  const employees = await pool.query(
-    `
-    SELECT id, first_name, last_name, position_title
-    FROM employees
-    WHERE reports_to=?
-    `, [managerId]);
+  let employees;
+  try {
+    employees = await pool.query(
+      `
+      SELECT id, first_name, last_name, position_title
+      FROM employees
+      WHERE reports_to=?
+      `, [managerId]);
+  } catch (e) {
+    next(e);
+  }
 
   res.status(200).send(employees);
 });
