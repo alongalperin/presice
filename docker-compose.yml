@@ -10,10 +10,8 @@ services:
       - employees
       - tasks
       - reports
-    volumes:
-      - ./node_modules
     ports:
-      - '8080:3000'
+      - '3000:3000'
     container_name: client
 
   employees:
