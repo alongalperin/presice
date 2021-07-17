@@ -1,0 +1,12 @@
+@import './style/variables.scss';
+
+.AssignTaskModal__Form {
+  height: fit-content;
+  width: fit-content;
+  margin: auto;
+}
+
+.SubordinatesList {
+  margin-top: $margin-top-section;
+  text-align: left;
+}

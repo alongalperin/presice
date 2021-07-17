@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import './variables.scss';
+
+p {
+  margin: 0px;
+}
+
+span {
+  width: fit-content;
+}
+
+hr {
+  margin: 0px;
+}
+
+.App {
+  padding: 60px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+.Header__1 {
+  display: block;
+  margin-bottom: 2vh;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.Button {
+  width: fit-content;
+  background-color: $main-blue; // TODO: create variable
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $blue-2;
+  }
+
+  &__Danger {
+    background-color: $red-1;
+    &:hover {
+      background-color: $red-2;
+    }
+  }
+
+  &__Success {
+    background-color: $green-1;
+    &:hover {
+      background-color: $green-2;
+    }
+  }
+}
+
+.Input__Group {
+  display: flex;
+  align-content: space-between;
+  width: inherit;
+  margin: 0 auto 1vh;
+  input {
+    height: $line-height;
+    width: 20vw;
+    padding-left: 5px;
+  }
+  label {
+    width: 100px;
+    text-align: right;
+    padding-right: 5px;
+    line-height: $line-height;
+    font-size: 15px;
+  }
+}
+
+.Section__Container {
+  margin-top: $margin-top-section;
+  text-align: left;
+}

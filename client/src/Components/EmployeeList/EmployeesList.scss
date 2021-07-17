@@ -1,0 +1,57 @@
+.EmployeeList__Container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.ListItem {
+  display: flex;
+  flex-direction: row;
+  width: 60vw;
+  height: 8vh;
+  box-sizing: border-box;
+  border-bottom: solid 1px black;
+}
+
+.ListItem__Wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+
+  &:nth-child(1) {
+    width: 42%;
+    padding-left: 2vw;
+  }
+
+  &:nth-child(2) {
+    width: 42%;
+  }
+
+  &:last-child {
+    width: 16%;
+
+    * {
+      margin: auto;
+    }
+  }
+}
+
+.ReportListItem__Wrapper {
+  &:nth-child(1) {
+    width: 20%;
+    padding-left: 2vw;
+  }
+
+  &:nth-child(2) {
+    width: 60%;
+  }
+
+  &:last-child {
+    width: 20%;
+
+    * {
+      margin: auto;
+    }
+  }
+}

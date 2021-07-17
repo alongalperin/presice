@@ -1,0 +1,44 @@
+version: '3.7'
+
+services:
+  # # Web client
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    depends_on:
+      - employees
+      - tasks
+      - reports
+    volumes:
+      - ./node_modules
+    ports:
+      - '8080:3000'
+    container_name: client
+
+  employees:
+    build:
+      context: ./employees
+      dockerfile: Dockerfile
+    image: employees
+    ports:
+      - '5000:5000'
+    container_name: employees
+
+  tasks:
+    build:
+      context: ./tasks
+      dockerfile: Dockerfile
+    image: tasks
+    ports:
+      - '5001:5001'
+    container_name: tasks
+
+  reports:
+    build:
+      context: ./reports
+      dockerfile: Dockerfile
+    image: reports
+    ports:
+      - '5002:5002'
+    container_name: reports
